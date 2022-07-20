@@ -1,0 +1,89 @@
+extends base
+
+block content
+  main.main
+    .login-form
+      h2.heading-secondary.ma-bt-lg Report Incident
+      form.form.form--report
+        .form__group
+            label.form__label(for='name') Title
+            input#name.form__input(type='text', placeholder='Unique title with 10 to 30 letters', minlength="10", maxlength="30", required)
+        
+        .form__group.ma-bt-md
+          label.form__label(for='date') Date
+              input#date.form__input(type='date', required)
+
+        .form__group
+          label.form__label(for='city') City
+          input#city.form__input(type='text', placeholder='city', required)
+      
+        .form__group.ma-bt-md
+          label.form__label(for='state') State
+          select#state.form__input
+            option(value='AL') Alabama
+            option(value='AK') Alaska
+            option(value='AZ') Arizona
+            option(value='AR') Arkansas
+            option(value='CA') California
+            option(value='CO') Colorado
+            option(value='CT') Connecticut
+            option(value='DE') Delaware
+            option(value='DC') District Of Columbia
+            option(value='FL') Florida
+            option(value='GA') Georgia
+            option(value='HI') Hawaii
+            option(value='ID') Idaho
+            option(value='IL') Illinois
+            option(value='IN') Indiana
+            option(value='IA') Iowa
+            option(value='KS') Kansas
+            option(value='KY') Kentucky
+            option(value='LA') Louisiana
+            option(value='ME') Maine
+            option(value='MD') Maryland
+            option(value='MA') Massachusetts
+            option(value='MI') Michigan
+            option(value='MN') Minnesota
+            option(value='MS') Mississippi
+            option(value='MO') Missouri
+            option(value='MT') Montana
+            option(value='NE') Nebraska
+            option(value='NV') Nevada
+            option(value='NH') New Hampshire
+            option(value='NJ') New Jersey
+            option(value='NM') New Mexico
+            option(value='NY') New York
+            option(value='NC') North Carolina
+            option(value='ND') North Dakota
+            option(value='OH') Ohio
+            option(value='OK') Oklahoma
+            option(value='OR') Oregon
+            option(value='PA') Pennsylvania
+            option(value='RI') Rhode Island
+            option(value='SC') South Carolina
+            option(value='SD') South Dakota
+            option(value='TN') Tennessee
+            option(value='TX') Texas
+            option(value='UT') Utah
+            option(value='VT') Vermont
+            option(value='VA') Virginia
+            option(value='WA') Washington
+            option(value='WV') West Virginia
+            option(value='WI') Wisconsin
+            option(value='WY') Wyoming
+
+        
+        .form__group.ma-bt-md
+          label.form__label(for='lat') Location - Latitude (Optionnal)
+              input#lat.form__input(type='number', step="0.01", min="-90", max="90", placeholder='-90 to 90')
+              
+        .form__group.ma-bt-md
+          label.form__label(for='lng') Location - Longitude (Optionnal)
+              input#lng.form__input(type='number', step="0.01", min="-180", max="180",placeholder='-180 to 180')
+        .form__group.ma-bt-md
+          label.form__label(for='description') Detail Description
+              textarea#description.form__input(rows="20", cols="50", placeholder='description', style="resize:none",required)
+              
+        
+        .form__group
+          button.btn.btn--green Report

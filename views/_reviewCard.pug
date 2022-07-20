@@ -1,0 +1,9 @@
+mixin reviewCard(review)
+  .reviews__card
+    .reviews__avatar
+      h6.reviews__user= review.user.name 
+    div
+      span= `${review.createdAt.toLocaleString('en-us', {day: 'numeric', month: 'short', year: 'numeric'})}`
+    p.reviews__text= review.comment.substring(0,200)
+    
+      

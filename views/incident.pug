@@ -1,0 +1,63 @@
+extends base
+include _reviewCard
+
+block append head
+  script(src='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v0.54.0/mapbox-gl.css' rel='stylesheet')
+
+
+block content
+  section.section-header
+    .header__hero
+      .header__hero-overlay &nbsp;
+      //- img.header__hero-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+
+    .heading-box
+      h1.heading-primary
+        span= `${incident.name.substring(0,30)}`
+      .heading-box__group
+        .heading-box__detail
+          svg.heading-box__icon
+            use(xlink:href='/img/icons.svg#icon-clock')
+          span.heading-box__text= incident.date.toLocaleString('en-us', {month: 'long', year: 'numeric'})
+        .heading-box__detail
+          svg.heading-box__icon
+            use(xlink:href='/img/icons.svg#icon-map-pin')
+          span.heading-box__text= incident.city
+
+
+  section.description-box
+      h2.heading-secondary.ma-bt-lg= `Incident Details`
+      - const parapraphs = incident.description.split('\n');
+      each p in parapraphs
+        p.description__text= p
+    
+  section.section-map
+    if incident.location.coordinates[0] == 0 && incident.location.coordinates[1] == 0
+      h1.ontop= "No valid latitude and longitude provided."
+    else
+    #map(data-lat=incident.location.coordinates[1], data-lng=incident.location.coordinates[0])
+
+  section.section-cta
+    .cta
+      if user
+        div
+          h2.heading-secondary Your Comments:
+        br
+        div
+          form#comment-form.comment-form(data-incidentID = `${incident._id}`)
+            .form__group.ma-bt-md
+              textarea#comments.form__input(rows="5", cols="20", maxlength="200",placeholder='Each user can make one comment up to 200 letters', style="resize:none", required)
+            .form__group
+              button.btn.btn--green.span-all-rows Submit Comments
+      else
+    
+        h2.heading-secondary.cta__img--logo Log in to make a comment.
+
+  
+  section.section-reviews
+    .reviews
+      each review in incident.reviews
+        +reviewCard(review)
+
+  
